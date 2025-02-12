@@ -1,10 +1,34 @@
-<app-default-login-layout
-    title="Faça o Login na sua conta"
-    primaryBtnText="Faça seu Login"
-    secondaryBtnText="Crie um Conta"
->
-    <form [formGroup]>
+<style>
+img{
+    height: 20px;
+    filter: invert();
+}
+</style>
 
-    </form>
+<app-default-login-layout
+    title="Faça o login na sua conta"
+    primaryBtnText="Faça seu login"
+    secondaryBtnText="Crie uma conta"
+    (sumbit)="submit()"
+    (navigate)="navigate()"
+    [disablePrimaryBtn]="!loginForm.valid"
+>
+   <form [formGroup]="loginForm">
+        <app-primary-input
+            formControlName="email"
+            inputName="email"
+            type="email"
+            placeholder="Digite seu email"
+        >
+            <img src="/assets/svg/mail-icon.svg" alt="Icone de uma carta de email"/> 
+        </app-primary-input>
+        <app-primary-input
+            formControlName="password"
+            inputName="password"
+            type="password"
+            placeholder="Digite sua senha"
+        >
+            <img src="/assets/svg/lock-icon.svg" alt="Icone de uma carta de email"/> 
+        </app-primary-input>
+   </form>
 </app-default-login-layout>
- 
