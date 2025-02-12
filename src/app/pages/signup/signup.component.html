@@ -1,0 +1,63 @@
+<style>
+img{
+    height: 20px;
+    filter: invert();
+}
+</style>
+
+<app-default-login-layout
+    title="Faça um cadastro e começe agora"
+    primaryBtnText="Crie uma conta"
+    secondaryBtnText="Faça o login"
+    (sumbit)="submit()"
+    (navigate)="navigate()"
+    [disablePrimaryBtn]="!signupForm.valid"
+>
+   <form [formGroup]="signupForm">
+        <app-primary-input
+            formControlName="name"
+            inputName="name"
+            type="text"
+            placeholder="Digite seu nome"
+        >
+        <img src="/assets/svg/user-icon.svg" alt="Icone circular com um silueta de pessoa"/> 
+        </app-primary-input>
+
+        <app-primary-input
+            formControlName="email"
+            inputName="email"
+            type="email"
+            placeholder="Digite seu email"
+        >
+            <img src="/assets/svg/mail-icon.svg" alt="Icone de uma carta de email"/> 
+        </app-primary-input>
+
+        <app-primary-input
+            formControlName="photo"
+            inputName="photo"
+            type="text"
+            placeholder="Cole o link de uma foto sua (opcional)"
+        >
+            <img src="/assets/svg/image-add-icon.svg" alt="Icone de uma imagem com um simbolo mais"/> 
+        </app-primary-input>
+
+        <app-primary-input
+            formControlName="password"
+            inputName="password"
+            type="password"
+            placeholder="Digite sua senha"
+        >
+            <img src="/assets/svg/lock-icon.svg" alt="Icone de uma carta de email"/> 
+        </app-primary-input>
+
+        <app-primary-input
+            formControlName="passwordConfirm"
+            inputName="passwordConfirm"
+            type="password"
+            placeholder="Confime sua senha"
+        >
+            <img src="/assets/svg/lock-icon.svg" alt="Icone de uma carta de email"/> 
+        </app-primary-input>
+
+   </form>
+</app-default-login-layout>

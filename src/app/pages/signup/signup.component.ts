@@ -6,48 +6,66 @@ import { Router } from '@angular/router';
 import { ServiceService } from '../../services/service.service';
 import { ToastrService } from 'ngx-toastr';
 
-interface LoginForm {
+interface SignupForm {
+  name: FormControl,
   email: FormControl,
-  password: FormControl
+  photo: FormControl,
+  password: FormControl,
+  passwordConfirm: FormControl
 }
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-signup',
   imports: [
     DefaultLoginLayoutComponent,
     ReactiveFormsModule,
     PrimaryInputComponent
   ],
   providers: [ServiceService],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  templateUrl: './signup.component.html',
+  styleUrl: './signup.component.css'
 })
-export class LoginComponent {
-  loginForm!: FormGroup<LoginForm>;
+export class SignupComponent {
+  signupForm!: FormGroup<SignupForm>;
 
 
   constructor(
     private router: Router,
-    private loginService: ServiceService,
+    private SignupService: ServiceService,
     private toastService: ToastrService,
   
   ){
-    this.loginForm = new FormGroup({
+    this.signupForm = new FormGroup({
+      name: new FormControl('', [Validators.required, Validators.minLength(3)]),
       email: new FormControl('', [Validators.required, Validators.email]),
+      photo: new FormControl(''),
       password: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      passwordConfirm: new FormControl('', [Validators.required, Validators.minLength(4)]),
     });
 
   }
 
   submit(){
-    this.loginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
-      next: () => this.toastService.success("Login feito com sucesso!"),
+   /* this.SignupService.singup(
+   this.signupForm.value.email,
+   this.signupForm.value.password,
+   this.signupForm.value.name,
+   this.signupForm.value.photo
+   ).subscribe({
+      next: () => this.toastService.success("Cadastro feito com sucesso!"),
       error: () => this.toastService.error("Erro inesperado! Tente novamente mais tarde")
-    })
+    })*/
+   
+   console.log(
+    this.signupForm.value.email,
+    this.signupForm.value.password,
+    this.signupForm.value.name,
+    this.signupForm.value.photo
+    )
   }
 
   navigate() {
-    this.router.navigate(['/signup']);
+    this.router.navigate(['/login']);
   }
 
 }
