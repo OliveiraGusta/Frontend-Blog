@@ -3,7 +3,7 @@ import { DefaultLoginLayoutComponent } from '../../components/default-login-layo
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PrimaryInputComponent } from '../../components/primary-input/primary-input.component';
 import { Router } from '@angular/router';
-import { ServiceService } from '../../services/service.service';
+import { AuthService } from '../../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 
 interface SignupForm {
@@ -21,7 +21,7 @@ interface SignupForm {
     ReactiveFormsModule,
     PrimaryInputComponent
   ],
-  providers: [ServiceService],
+  providers: [AuthService],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css'
 })
@@ -31,7 +31,7 @@ export class SignupComponent {
 
   constructor(
     private router: Router,
-    private SignupService: ServiceService,
+    private authService: AuthService,
     private toastService: ToastrService,
   
   ){
@@ -46,7 +46,7 @@ export class SignupComponent {
   }
 
   submit(){
-   /* this.SignupService.singup(
+   this.authService.singup(
    this.signupForm.value.email,
    this.signupForm.value.password,
    this.signupForm.value.name,
@@ -54,14 +54,9 @@ export class SignupComponent {
    ).subscribe({
       next: () => this.toastService.success("Cadastro feito com sucesso!"),
       error: () => this.toastService.error("Erro inesperado! Tente novamente mais tarde")
-    })*/
+    })
    
-   console.log(
-    this.signupForm.value.email,
-    this.signupForm.value.password,
-    this.signupForm.value.name,
-    this.signupForm.value.photo
-    )
+   
   }
 
   navigate() {
